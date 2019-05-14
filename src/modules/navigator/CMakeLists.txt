@@ -36,6 +36,7 @@ px4_add_module(
 	MAIN navigator
 	STACK_MAIN 1300
 	COMPILE_FLAGS
+		-Wno-address-of-packed-member # TODO: fix in c_library_v2
 	SRCS
 		navigator_main.cpp
 		navigator_mode.cpp
