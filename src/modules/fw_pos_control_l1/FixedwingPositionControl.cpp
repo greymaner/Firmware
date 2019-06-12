@@ -927,12 +927,12 @@ FixedwingPositionControl::control_position(const Vector2f &curr_pos, const Vecto
 
 			mission_throttle = pos_sp_curr.cruising_throttle;
 		}
-
+		//待机状态
 		if (pos_sp_curr.type == position_setpoint_s::SETPOINT_TYPE_IDLE) {
 			_att_sp.thrust_body[0] = 0.0f;
 			_att_sp.roll_body = 0.0f;
 			_att_sp.pitch_body = 0.0f;
-
+		//普通航点
 		} else if (pos_sp_curr.type == position_setpoint_s::SETPOINT_TYPE_POSITION) {
 			/* waypoint is a plain navigation waypoint */
 			_l1_control.navigate_waypoints(prev_wp, curr_wp, curr_pos, nav_speed_2d);
@@ -948,7 +948,7 @@ FixedwingPositionControl::control_position(const Vector2f &curr_pos, const Vecto
 						   mission_throttle,
 						   false,
 						   radians(_parameters.pitch_limit_min));
-
+		//徘徊航点
 		} else if (pos_sp_curr.type == position_setpoint_s::SETPOINT_TYPE_LOITER) {
 
 			/* waypoint is a loiter waypoint */

@@ -637,7 +637,7 @@ bool AttitudeEstimatorQ::update(float dt)
 
 	if (_acc_comp || (accel_norm_sq > lower_accel_limit * lower_accel_limit &&
 			  accel_norm_sq < upper_accel_limit * upper_accel_limit)) {
-		corr += (k % (_accel - _pos_acc).normalized()) * _w_accel;
+		corr += (k % (_accel - _pos_acc).normalized()) * _w_accel;  //{k%（_accel“加速度计的测量值”-位移加速度）的单位化）<约等于重力加速度g>}*权重。
 	}
 
 	// Gyro bias estimation
